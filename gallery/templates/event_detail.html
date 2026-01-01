@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Event Header -->
+<section class="container my-5">
+  <div class="mb-4">
+    <h2>{{ event.name }}</h2>
+    <p class="text-muted">{{ event.date }}{% if event.location %} · {{ event.location }}{% endif %}</p>
+    <p>{{ event.description }}</p>
+    <a href="/events/" class="btn btn-outline-primary">Back to Event</a>
+  </div>
+
+  <!-- Event Photos Grid -->
+  <div class="row row-cols-2 row-cols-md-4 g-3" data-masonry='{"percentPosition": true }'>
+    {% for photo in page_obj %}
+      <div class="col">
+        <div class="card gallery-card shadow-sm h-100">
+          <img src="{{ photo.image.url }}" class="gallery-img" alt="{{ photo.title }}">
+          <div class="card-body">
+            <h6 class="mb-1">{{ photo.caption }}</h6>
+            <small class="text-muted text-capitalize">{{ photo.user }} · {{ photo.created_at }}</small>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No images available for this event yet.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  <nav class="mt-5">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_obj.number == num %}active{% endif %}"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Next</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+</section>
+
+{% endblock %}

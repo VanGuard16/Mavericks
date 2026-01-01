@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Add Image Form -->
+<section class="container my-5" style="max-width: 720px;">
+  <div class="text-center">
+    <h3 class="mb-4">Add New Image</h3>
+    <p class="px-5">Upload a new photo to the department gallery. Please provide all the necessary details below.</p>
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Image Upload -->
+    <div class="mb-4">
+      <label class="upload-box w-100">
+        <i class="fa fa-cloud-arrow-up fs-1 text-primary"></i>
+        <p class="mt-2 mb-0"><b>Drag & drop</b> image here, or click to <b>browse</b></p>
+        <small class="text-muted">PNG, JPG up to 5MB</small>
+        <input type="file" name="images" class="d-none" accept="image/*" multiple required onchange="previewImage(event)">
+ 
+      </label>
+    </div>
+
+    <!-- Image Preview -->
+     <div class="mb-4 text-center d-none" id="previewContainer">
+      <div id="imagePreview" class="preview-img img-fluid shadow-sm" alt="">
+      </div>
+    </div>
+
+    <!-- Caption -->
+    <div class="mb-3">
+      <label class="form-label">Caption</label>
+      <input type="text" class="form-control" name="caption" placeholder="Enter image caption" required>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Event</label>
+      <select class="form-select" name="event" required>
+        <option value="">Select event</option>
+        {% for event in events %}
+        <option value="{{event.id}}">{{event}}</option>
+       {% endfor %} 
+      </select>
+    </div>
+
+    <!-- Submit -->
+    <div class="d-flex justify-content-end gap-2">
+      <button type="reset" class="btn btn-outline-secondary" onclick="resetUpload()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Upload Image</button>
+    </div>
+
+  </form>
+</section>
+<script>
+function previewImage(event) {
+    const files = event.target.files;
+    if (!files.length) return;
+
+    const container = document.getElementById('previewContainer');
+    const previewArea = document.getElementById('imagePreview');
+
+    previewArea.innerHTML = ''; // clear old previews
+    container.classList.remove('d-none');
+
+    Array.from(files).forEach(file => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.style.width = '120px';
+        img.style.margin = '6px';
+        img.style.objectFit = 'cover';
+        img.onload = () => URL.revokeObjectURL(img.src);
+        previewArea.appendChild(img);
+    });
+}
+function resetUpload() {
+    const fileInput = document.querySelector('input[type="file"]');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewArea = document.getElementById('imagePreview');
+
+    // Clear file input
+    fileInput.value = '';
+
+    // Clear previews
+    previewArea.innerHTML = '';
+
+    // Hide preview container
+    previewContainer.classList.add('d-none');
+}
+
+</script>
+
+{% endblock %}

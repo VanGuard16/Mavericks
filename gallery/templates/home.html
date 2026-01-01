@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section bg-light text-center  py-5">
+  <div class="container">
+    <h1>Explore our Departmental Gallery</h1>
+    <p>A shared space for all our beautiful moments together. Upload, share and relive the moments we create.</p>
+    <a href="{% url 'add_photo' %}" class="btn btn-primary mt-3 px-5 py-2 hero-btn"><i class="fa-solid fa-plus me-3"></i>Add Your Photos</a>
+      <!-- <a class="btn mt-3">{{total_photos}} photos shared</a> -->
+  </div>
+</section>
+
+
+
+<!-- Recent Photos -->
+<section class="container my-5" id="recent-photos">
+  <h3 class="mb-4">Recent Photos</h3>
+  <div class="row row-cols-2 row-cols-md-4 g-3" data-masonry='{"percentPosition": true }'>
+    {% for photo in recent_photos %}
+    <div class="col">
+      <div class="card">
+        <img src="{{photo.image.url}}" class="gallery-img">
+        <div class="card-body">
+          <h6 class="mb-1 text-capitalize">{{photo.caption}}</h6>
+          <small class="text-secondary-emphasis"><i class="fa-solid fa-map-marker pe-2 text-danger"></i>{{photo.event.name}}</small>
+          <p class="text-capitalize mt-2 mb-0"><img src="{{ photo.user.profile.image.url }}"
+                 class="rounded-circle me-2"
+                 alt="Profile"
+                 style="width: 30px; height: 30px; object-fit: cover;"></i>{{photo.user}}</p>
+        </div>
+      </div>
+    </div>
+     {% endfor %}
+  </div>
+  {% if recent_photos|length == 0 %}
+    <p class="text-muted">No photos have been uploaded yet. Be the first to <a href="{% url 'add_photo' %}">add a photo</a>!</p>
+  {% endif %}
+</section>
+
+<!-- Latest Events -->
+<section class="container my-5">
+  <h3 class="mb-4">Latest Events <a href="/events/" class="float-end h6 text-decoration-none">View All &gt;</a></h3>
+  <div class="row g-3">
+    {% for event in recent_events %}
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h6>{{event.name}}</h6>
+        <small class="text-muted">{{event.date}}</small>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if recent_events|length == 0 %}
+    <p class="text-muted">No events available at the moment.</p>
+  {% endif %}
+</section>
+{% endblock %}
