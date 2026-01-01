@@ -37,7 +37,7 @@
           <h6 class="mb-1 text-capitalize">{{photo.caption}}</h6> 
           <small class="text-secondary-emphasis"><i class="fa-solid fa-map-marker pe-2 text-danger"></i>{{photo.event.name}}</small>
           <p class="text-capitalize mt-2 mb-0">
-            {% if if photo.user.profile.image.name %}
+            {% if photo.user.profile.image.name %}
               <img src="{{ photo.user.profile.image.url }}" class="rounded-circle" width="30" height="30" style="object-fit: cover;">
             {% else %}
               <img src="{% static 'profiles/default.jpg' %}" class="rounded-circle" width="30" height="30" style="object-fit: cover;">
