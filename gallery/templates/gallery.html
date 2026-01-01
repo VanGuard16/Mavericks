@@ -38,9 +38,9 @@
           <small class="text-secondary-emphasis"><i class="fa-solid fa-map-marker pe-2 text-danger"></i>{{photo.event.name}}</small>
           <p class="text-capitalize mt-2 mb-0">
             {% if user.profile.image %}
-              <img src="{{ user.profile.image.url }}" class="rounded-circle" width="120" height="120" style="object-fit: cover;">
+              <img src="{{ user.profile.image.url }}" class="rounded-circle" width="30" height="30" style="object-fit: cover;">
             {% else %}
-              <img src="{% static 'profiles/default.jpg' %}" class="rounded-circle" width="120" height="120" style="object-fit: cover;">
+              <img src="{% static 'profiles/default.jpg' %}" class="rounded-circle" width="30" height="30" style="object-fit: cover;">
             {% endif %}
 
         </i>{{photo.user}}</p>
