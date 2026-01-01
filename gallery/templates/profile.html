@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <!-- Gallery -->
+   <!-- Gallery -->
   <div class="card mt-4 p-4">
     <div class="row row-cols-2 row-cols-md-4 g-3" data-masonry='{"percentPosition": true }'>
         {% for photo in photo_details %}
@@ -60,15 +60,12 @@
                     <p class="card-title"><i class="fa-regular fa-calendar me-1"></i>{{photo.event.date}}</p>
                   </div>
                 </div>
-
-            </div>
-
-        {% empty %}
-            <p class="text-muted">You haven't uploaded any photos yet.</p>
-
+            </div>  
         {% endfor %}
-            
     </div>
+    {% if photo_details|length == 0 %}
+      <p class="text-muted mb-0 pt-3">No photos have been uploaded yet.</p>
+    {% endif %}
   </div>
 </div>
 
