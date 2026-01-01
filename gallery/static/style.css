@@ -42,7 +42,7 @@ background: #fff;
 cursor: pointer;
 }
 .upload-box:hover { background-color: #f8f9fa; }
-.preview-img { max-height: 220px; border-radius: 10px; }
+.preview-img {border-radius: 10px; }
 
 .login-container{
   padding: 30px;
