@@ -7,7 +7,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     contact = models.CharField(blank=True, max_length=20)
     email = models.EmailField(blank=True)
-    created_at = models.TimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.username} Profile"
