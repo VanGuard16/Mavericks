@@ -57,18 +57,18 @@ def add_photo(request):
 
         if not images:
             messages.error(request, 'Please select at least one image.')
-            return redirect('add-photo')
+            return redirect('add_photo')
 
         if not event_id:
             messages.error(request, 'Please select an event.')
-            return redirect('add-photo')
+            return redirect('add_photo')
 
         event = Event.objects.get(id=event_id)
 
         # Optional limit (recommended)
         if len(images) > 10:
             messages.error(request, 'You can upload a maximum of 10 images.')
-            return redirect('add-photo')
+            return redirect('add_photo')
 
         for image in images:
             Photo.objects.create(
