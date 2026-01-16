@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wcmoo61fho+^#iqgo5y6@kma)8g(-^uh7ro4pb@o(ma3903tjh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['Lumina1.pythonanywhere.com',
                  'localhost',

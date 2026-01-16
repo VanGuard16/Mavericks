@@ -5,6 +5,7 @@ from .forms import ProfileForm
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
     recent_photos = Photo.objects.order_by('-created_at')[:8]
@@ -20,11 +21,20 @@ def home(request):
     return render(request, 'home.html', context)
 @login_required
 def profile(request):
-    photo_details = Photo.objects.filter(user=request.user)
-    photo_count = Photo.objects.filter(user=request.user).count
+    return redirect(
+        "user_profile",
+        username=request.user.username
+    )
+
+@login_required
+def user_profile(request, username):
+    profile_user = get_object_or_404(User, username=username)
+    photo_details = Photo.objects.filter(user=profile_user)
+    photo_count = Photo.objects.filter(user=profile_user).count
     context = {
         'photo_details': photo_details,
         'photo_count': photo_count,
+        'profile_user': profile_user
     }
     return render(request, 'profile.html', context)
 
@@ -134,7 +144,7 @@ def add_event(request):
 def events(request):
 
     events = Event.objects.all().order_by('-date')  # latest events first
-    paginator = Paginator(events, 9)  # 9 events per page
+    paginator = Paginator(events, 18)  # 9 events per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     

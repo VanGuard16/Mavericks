@@ -97,6 +97,13 @@
     touchNavigation: true,
     loop: true
   });
+
+  window.addEventListener('load', ()=>{
+    const masonry = document.querySelector('[data-masonry]')
+    if (masonry){
+      Masonry.data(masonry)?.layout()
+    }
+  })
 </script>
 </body>
 </html>
