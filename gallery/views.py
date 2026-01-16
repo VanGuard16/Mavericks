@@ -103,7 +103,7 @@ def gallery(request):
         photos = photos.order_by('-created_at')
 
     # Pagination
-    paginator = Paginator(photos, 12)
+    paginator = Paginator(photos, 36)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

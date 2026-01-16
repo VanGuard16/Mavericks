@@ -32,7 +32,9 @@
      {% for photo in page_obj %}
     <div class="col">
       <div class="card gallery-card shadow-sm h-100">
-        <img src="{{photo.image.url}}" class="gallery-img" alt="Gallery image">
+        <a href="{{ photo.image.url }}" class="glightbox" data-gallery="department-gallery" data-title="{{ photo.caption }}">
+          <img src="{{photo.image.url}}" class="gallery-img" alt="Gallery image">
+        </a>
         <div class="card-body">
           <h6 class="mb-1 text-capitalize">{{photo.caption}}</h6> 
           <small class="text-secondary-emphasis"><i class="fa-solid fa-map-marker pe-2 text-danger"></i>{{photo.event.name}}</small>
