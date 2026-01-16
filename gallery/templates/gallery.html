@@ -33,7 +33,7 @@
     <div class="col">
       <div class="card gallery-card shadow-sm h-100">
         <a href="{{ photo.image.url }}" class="glightbox" data-gallery="department-gallery" data-title="{{ photo.caption|capfirst }} - {{ photo.event.name }} by {{ photo.user }}">
-          <img src="{{photo.image.url}}" class="gallery-img" alt="Gallery image">
+          <img src="{{photo.image.url}}" class="gallery-img" alt="Gallery image" loading="lazy">
         </a>
         <div class="card-body">
           <h6 class="mb-1 text-capitalize">{{photo.caption}}</h6> 

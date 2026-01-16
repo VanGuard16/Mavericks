@@ -8,7 +8,7 @@
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="card shadow-sm event-card h-100">
           {% if event.cover_image %}
-            <img src="{{ event.cover_image.url }}" class="card-img-top" alt="{{ event.name }}">
+            <img src="{{ event.cover_image.url }}" class="card-img-top" alt="{{ event.name }}" loading="lazy">
           {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ event.name }}</h5>

@@ -29,6 +29,8 @@ border: 5px solid #fff;
 .gallery-img {
   width: 100%;
   height: auto;
+  width: 100%;
+  display: block;
   object-fit: cover;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
@@ -48,8 +50,4 @@ cursor: pointer;
   max-width: 650px;
   border-radius: 10px;
   margin-top: 5em;
-}
-
-.row[data-masonry] > *{
-  margin-bottom: 1rem;
 }
