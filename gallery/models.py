@@ -26,10 +26,14 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
-
 class Photo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(
+        upload_to='images/',
+        width_field='width',
+        height_field='height')
+    width = models.PositiveIntegerField(null=True, editable=False)
+    height = models.PositiveIntegerField(null=True, editable=False)
     caption = models.CharField(max_length=255, blank=True)
     event = models.ForeignKey(
         Event,

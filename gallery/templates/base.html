@@ -98,12 +98,18 @@
     loop: true
   });
 
-  window.addEventListener('load', ()=>{
-    const masonry = document.querySelector('[data-masonry]')
-    if (masonry){
-      Masonry.data(masonry)?.layout()
-    }
-  })
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.onload = () => {img.classList.add("loaded")}
+      observer.unobserve(img)
+    });
+  }, {rootMargin: '300px'})
+
+  document.querySelectorAll('.gallery-img').forEach(img => observer.observe(img))
+  
 </script>
 </body>
 </html>

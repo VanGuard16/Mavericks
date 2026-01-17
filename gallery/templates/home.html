@@ -22,7 +22,9 @@
     <div class="col">
       <div class="card">
         <a href="{{ photo.image.url }}" class="glightbox" data-gallery="department-gallery" data-title="{{ photo.caption|capfirst }} - {{ photo.event.name }} by {{ photo.user }}">
-          <img src="{{photo.image.url}}" class="gallery-img" alt="Gallery image" loading="lazy">
+          <article class="pin" style="--ratio: {{photo.height}}/{{photo.width}}">
+            <img data-src="{{photo.image.url}}" class="gallery-img" alt="Gallery image" loading="lazy">
+          </article>
         </a>
 
         <div class="card-body">

@@ -25,17 +25,32 @@ border: 5px solid #fff;
     border-radius: 0.75rem;
 }
 
-
+.pin{
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+}
+.pin::before{
+  content: '';
+  display: block;
+  padding-bottom: calc(100% * var(--ratio));
+}
 .gallery-img {
-  width: 100%;
-  height: auto;
+  position: absolute;
+  inset: 0;
+  height: 100%;
   width: 100%;
   display: block;
   object-fit: cover;
+  opacity: 0;
+  z-index: 1;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
-  transition: .5s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.543);
+  transition: opacity .35s ease;
+  background-color: rgba(255, 255, 255, 0.543);
+}
+.gallery-img.loaded{
+  opacity: 1;
 }
 .upload-box {
 border: 2px dashed #ced4da;
