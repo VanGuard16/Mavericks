@@ -34,6 +34,8 @@ border: 5px solid #fff;
   object-fit: cover;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  transition: .5s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.543);
 }
 .upload-box {
 border: 2px dashed #ced4da;
